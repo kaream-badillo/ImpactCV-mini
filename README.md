@@ -1,10 +1,11 @@
-# 🎯 ImpactCV-mini
+https://github.com/kaream-badillo/ImpactCV-mini.git# 🎯 ImpactCV-mini
 
 **MVP Web3 Full-Stack** - Sistema de badges/achievements on-chain con integración ENS y multi-chain.
 
 ## 🚀 Demo
 
-- **Frontend:** [localhost:3000](http://localhost:3000)
+- **Live Demo:** [impact-cv-mini-git-main-kareams-projects.vercel.app](https://impact-cv-mini-git-main-kareams-projects.vercel.app)
+- **Local Development:** [localhost:3000](http://localhost:3000)
 - **Blockchain:** Lisk Sepolia Testnet
 - **Explorer:** [Blockscout](https://sepolia-blockscout.lisk.com)
 
@@ -71,15 +72,27 @@ Create `.env.local` in `web/`:
 ```env
 NEXT_PUBLIC_RPC_URL=https://rpc.sepolia-api.lisk.com
 NEXT_PUBLIC_CHAIN_ID=4202
-NEXT_PUBLIC_BADGES_CONTRACT=0x... # Deploy contract first
+NEXT_PUBLIC_BADGES_CONTRACT=0x... # Deploy contract first (see deployment section)
 NEXT_PUBLIC_EXPLORER_BASE=https://sepolia-blockscout.lisk.com
 ```
+
+**📋 Contract Address (after deployment):**
+- **Badges Contract:** `0x...` (generated after `npm run deploy:lisk`)
+- **Network:** Lisk Sepolia (Chain ID: 4202)
+- **Explorer:** [Blockscout](https://sepolia-blockscout.lisk.com)
 
 ### 3. Deploy Smart Contract
 
 ```bash
 cd contracts
 npm run deploy:lisk
+```
+
+**📝 After deployment, copy the contract address to your `.env.local`:**
+```bash
+# Example output:
+# Badges deployed: 0x1234567890abcdef1234567890abcdef12345678
+# Copy this address to NEXT_PUBLIC_BADGES_CONTRACT in web/.env.local
 ```
 
 ### 4. Start Development
@@ -89,7 +102,7 @@ cd web
 npm run dev
 ```
 
-Visit [localhost:3000](http://localhost:3000)
+Visit [localhost:3000](http://localhost:3000) or check the [Live Demo](https://impact-cv-mini-git-main-kareams-projects.vercel.app)
 
 ## 📋 Usage
 

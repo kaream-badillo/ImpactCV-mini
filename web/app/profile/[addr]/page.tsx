@@ -6,10 +6,14 @@ import { getEnsName } from "../../../lib/ens";
 
 const CONTRACT = process.env.NEXT_PUBLIC_BADGES_CONTRACT as `0x${string}`;
 
-const short = (a: string) => `${a.slice(0,6)}…${a.slice(-4)}`;
+const short = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
 
-export default async function Profile({ params }: { params: { addr: `0x${string}` } }) {
-  const addr = params.addr;
+export default async function Profile({
+  params,
+}: {
+  params: Promise<{ addr: `0x${string}` }>;
+}) {
+  const { addr } = (await params) as { addr: `0x${string}` };
   const name = await getEnsName(addr).catch(() => null);
 
   const client = createPublicClient({
@@ -32,7 +36,9 @@ export default async function Profile({ params }: { params: { addr: `0x${string}
     return (
       <div className="space-y-4">
         <span className="pill">{name ?? short(addr)}</span>
-        <p style={{ color: "var(--danger)" }}>Error leyendo balances: {String(e?.shortMessage || e?.message || e)}</p>
+        <p style={{ color: "var(--danger)" }}>
+          Error leyendo balances: {String(e?.shortMessage || e?.message || e)}
+        </p>
       </div>
     );
   }
@@ -41,19 +47,21 @@ export default async function Profile({ params }: { params: { addr: `0x${string}
     <div className="space-y-6">
       <header className="flex items-center justify-between">
         <span className="pill">{name ?? short(addr)}</span>
-        <a className="btn-ghost" href="/scan">Mint another</a>
+        <a className="btn-ghost" href="/scan">
+          Mint another
+        </a>
       </header>
 
       <div className="grid sm:grid-cols-3 gap-4">
         {ids.map((id, i) => (
           <div key={id.toString()} className="card p-5">
             <div className="font-semibold">Badge #{id.toString()}</div>
-            <div className="mt-1" style={{ color: "var(--muted)" }}>Balance: {balances[i]?.toString?.() ?? "0"}</div>
+            <div className="mt-1" style={{ color: "var(--muted)" }}>
+              Balance: {balances[i]?.toString?.() ?? "0"}
+            </div>
           </div>
         ))}
       </div>
     </div>
   );
 }
-
-
