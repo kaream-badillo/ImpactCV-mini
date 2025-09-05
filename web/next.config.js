@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+// Force Vercel redeploy - commit f5102b9
 const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['viem']
