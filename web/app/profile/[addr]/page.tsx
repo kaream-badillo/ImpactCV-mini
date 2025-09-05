@@ -15,9 +15,10 @@ const short = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
 export default async function Profile({
   params,
 }: {
-  params: { addr: string };
+  params: Promise<{ addr: string }>;
 }) {
-  const addr = params.addr as `0x${string}`;
+  const { addr: rawAddr } = await params;
+  const addr = rawAddr as `0x${string}`;
   const name = await getEnsName(addr).catch(() => null);
 
   const client = createPublicClient({
@@ -25,7 +26,7 @@ export default async function Profile({
     transport: http(liskSepolia.rpcUrls.default.http[0]),
   });
 
-  const ids = [1n, 2n, 3n];
+  const ids = [BigInt(1), BigInt(2), BigInt(3)];
   const accounts = Array(ids.length).fill(addr);
   let balances: readonly bigint[] = [];
 
@@ -35,6 +36,7 @@ export default async function Profile({
       address: CONTRACT,
       functionName: "balanceOfBatch",
       args: [accounts, ids],
+      authorizationList: [],
     });
   } catch (e: any) {
     return (
