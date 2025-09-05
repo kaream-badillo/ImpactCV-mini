@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+/* Design System Tokens */
+:root {
+  --bg: #ffffff;
+  --ink: #0B1220;
+  --muted: #64748B;
+  --accent: #2E6AF7;
+  --accent-alt: #6C5CE7;
+  --success: #16A34A;
+  --danger: #EF4444;
+  --radius: 16px;
+  --shadow: 0 18px 50px -25px rgba(2,6,23,.25);
+}
+
+/* Estilos base */
+html, body { 
+  height: 100%; 
+}
+
+body { 
+  background-color: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Cards */
+.card {
+  border-radius: var(--radius);
+  border: 1px solid #e4e4e7;
+  box-shadow: var(--shadow);
+  background-color: var(--bg);
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 20px 60px -20px rgba(2,6,23,.3);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:focus-visible {
+  outline: none;
+  ring: 2px solid var(--accent);
+  ring-offset: 2px;
+}
+
+.btn-primary {
+  color: white;
+  background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px -8px var(--accent);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-ghost {
+  border: 1px solid #d4d4d8;
+  background-color: var(--bg);
+  color: var(--ink);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.btn-ghost:focus-visible {
+  ring-color: var(--accent);
+}
+
+.btn-danger {
+  background-color: var(--danger);
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #dc2626;
+}
+
+/* Pills */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  background-color: #f1f5f9;
+  color: var(--muted);
+  border: 1px solid #e2e8f0;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.pill:focus-visible {
+  outline: none;
+  ring: 2px solid var(--accent);
+  ring-offset: 2px;
+}
+
+/* Typography */
+.h1 {
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+@media (min-width: 768px) {
+  .h1 {
+    font-size: 3.75rem;
+  }
+}
+
+.lead {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .lead {
+    font-size: 1.25rem;
+  }
+}
+
+.grad {
+  background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid #e4e4e7;
+}
