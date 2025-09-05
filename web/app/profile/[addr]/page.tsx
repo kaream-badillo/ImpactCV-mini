@@ -6,14 +6,18 @@ import { getEnsName } from "../../../lib/ens";
 
 const CONTRACT = process.env.NEXT_PUBLIC_BADGES_CONTRACT as `0x${string}`;
 
+if (!CONTRACT || CONTRACT === '0x...') {
+  throw new Error('NEXT_PUBLIC_BADGES_CONTRACT not configured');
+}
+
 const short = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
 
 export default async function Profile({
   params,
 }: {
-  params: Promise<{ addr: `0x${string}` }>;
+  params: { addr: string };
 }) {
-  const { addr } = (await params) as { addr: `0x${string}` };
+  const addr = params.addr as `0x${string}`;
   const name = await getEnsName(addr).catch(() => null);
 
   const client = createPublicClient({

@@ -6,6 +6,10 @@ import { liskSepolia } from "../../lib/chains";
 import { ERC1155_ABI } from "../../lib/abi";
 
 const CONTRACT = process.env.NEXT_PUBLIC_BADGES_CONTRACT as `0x${string}`;
+
+if (!CONTRACT || CONTRACT === '0x...') {
+  console.error('NEXT_PUBLIC_BADGES_CONTRACT not configured');
+}
 const EXPLORER =
   process.env.NEXT_PUBLIC_EXPLORER_BASE || "https://sepolia-blockscout.lisk.com";
 
